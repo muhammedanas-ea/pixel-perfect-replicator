@@ -1,5 +1,6 @@
 import { ArrowRight, Phone } from "lucide-react";
 import { PillButton } from "./PillButton";
+import contactBlob from "@/assets/contact-blob.png";
 
 const steps = [
   { num: "01", code: "A-01", title: "ASSESSMENT", desc: "We start by conducting a thorough assessment of your business, identifying key areas for improvement and growth opportunities.", highlight: false },
@@ -21,17 +22,24 @@ export function Process() {
           {steps.map((s) => (
             <div
               key={s.num}
-              className={`relative grid grid-cols-12 items-center gap-4 py-10 border-t border-white/10 ${
-                s.highlight
-                  ? "bg-[linear-gradient(90deg,oklch(0.3_0.2_300/0.4),oklch(0.2_0.15_320/0.2),transparent)]"
-                  : ""
-              }`}
+              className="relative grid grid-cols-12 items-center gap-4 py-10 border-t border-white/10 overflow-hidden"
             >
-              <div className="col-span-1 text-sm text-muted-foreground border-b border-white/30 pb-1 inline-block w-fit">{s.num}</div>
-              <div className="col-span-4 font-display text-5xl md:text-7xl font-black tracking-tighter">{s.code}</div>
-              <div className="col-span-3 text-sm tracking-[0.2em] text-muted-foreground">{s.title}</div>
-              <div className="col-span-3 text-sm text-muted-foreground leading-relaxed">{s.desc}</div>
-              <div className="col-span-1 flex justify-end">
+              {s.highlight && (
+                <div className="absolute inset-0 -z-0">
+                  <img
+                    src={contactBlob}
+                    alt=""
+                    aria-hidden
+                    className="absolute left-1/4 top-1/2 -translate-y-1/2 h-[200%] w-auto object-cover opacity-90 pointer-events-none"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/80" />
+                </div>
+              )}
+              <div className="col-span-1 text-sm text-muted-foreground border-b border-white/30 pb-1 inline-block w-fit relative z-10">{s.num}</div>
+              <div className="col-span-4 font-display text-5xl md:text-7xl font-black tracking-tighter relative z-10">{s.code}</div>
+              <div className="col-span-3 text-sm tracking-[0.2em] text-muted-foreground relative z-10">{s.title}</div>
+              <div className="col-span-3 text-sm text-muted-foreground leading-relaxed relative z-10">{s.desc}</div>
+              <div className="col-span-1 flex justify-end relative z-10">
                 <button className="h-12 w-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all">
                   <ArrowRight className="h-5 w-5" />
                 </button>
